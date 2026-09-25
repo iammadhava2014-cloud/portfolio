@@ -2,7 +2,7 @@
    Design tokens — warm editorial palette, verified WCAG AA
    ========================================================= */
 :root{
-  --paper:#faf8f3;       /* page background */
+  --paper:#faf8f3;        /* page background */
   --surface:#ffffff;     /* card surfaces */
   --surface-2:#f1eee6;   /* soft section tint / icon chips */
   --ink:#1a1917;         /* primary text */
