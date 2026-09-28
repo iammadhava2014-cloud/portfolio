@@ -61,7 +61,9 @@ if (toTop) {
 const prefersReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 if (!prefersReducedMotionQuery.matches) {
   const revealTargets = document.querySelectorAll(
-    '.section-intro, .capability-grid .cap-card, .process-heading, .process-card, .process-callout, .work-heading, .project-grid .project-card, .footer-copy, .footer-contact, .footer-note'
+    '.section-intro, .capability-grid .cap-card, .process-heading, .process-card, .process-callout, .work-heading, .project-grid .project-card, .footer-copy, .footer-contact, .footer-note, ' +
+    // Resume page
+    '#tools h2, #capabilities h2, #credentials-section h2, .tool-group, .exp-entry, .credentials'
   );
   revealTargets.forEach((el, i) => {
     el.classList.add('reveal');
@@ -77,11 +79,21 @@ if (!prefersReducedMotionQuery.matches) {
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   revealTargets.forEach(el => revealObserver.observe(el));
 
-  // Safety net: never leave content permanently invisible if the observer
-  // misses an element (e.g. a resized/zoomed viewport, or an unusual layout pass).
-  window.addEventListener('load', () => {
-    setTimeout(() => revealTargets.forEach(el => el.classList.add('in')), 2500);
-  });
+  // Safety net: never leave content permanently invisible if the observer misses an element
+  // (e.g. a resized/zoomed viewport). Only sweeps elements already scrolled into or past view,
+  // so content further down still animates in when the visitor reaches it.
+  let sweepTicking = false;
+  const sweepMissed = () => {
+    const vh = window.innerHeight;
+    revealTargets.forEach(el => {
+      if (!el.classList.contains('in') && el.getBoundingClientRect().top < vh) el.classList.add('in');
+    });
+    sweepTicking = false;
+  };
+  window.addEventListener('load', () => setTimeout(sweepMissed, 1200));
+  window.addEventListener('scroll', () => {
+    if (!sweepTicking) { sweepTicking = true; setTimeout(sweepMissed, 700); }
+  }, { passive: true });
 }
 
 // Back-to-top footer link works through normal anchor navigation.
