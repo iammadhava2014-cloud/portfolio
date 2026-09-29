@@ -303,7 +303,7 @@ em.hl{
 .resume-hero-grid{grid-template-columns:1.1fr .9fr;min-height:auto;gap:44px;margin-top:20px}
 .resume-hero-grid h1{margin:0 0 22px}
 .resume-quote{font-family:'Fraunces',serif;font-style:italic;font-size:21px;line-height:1.55;color:var(--ink);margin:0 0 30px;max-width:560px}
-.resume-hero .resume-quote{font-size:20px;line-height:1.55;color:var(--ink);margin:0 0 30px;max-width:560px}
+.resume-hero .resume-quote{font-size:20px;line-height:1.55;color:var(--ink);margin:0;max-width:560px}
 .resume-portrait-wrap{display:flex;justify-content:center}
 .resume-portrait{width:260px;max-width:100%}
 /* Feathered edges: fade all four sides to transparent and multiply the off-white paper into the page background */
