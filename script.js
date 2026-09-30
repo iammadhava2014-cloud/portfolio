@@ -210,3 +210,87 @@ if (portraitRing && turbulence && displace) {
     portraitRing.addEventListener('blur', stopWave);
   }
 }
+
+// ---------- Keyword click: white mask over the portrait with a short description ----------
+// Layered on top of the hover effects above; nothing here touches hover behaviour.
+const portraitInfo = document.getElementById('portraitInfo');
+if (portraitInfo && portraitRing) {
+  const infoTitle = document.getElementById('portraitInfoTitle');
+  const infoText = document.getElementById('portraitInfoText');
+  const infoBadge = document.getElementById('portraitInfoBadge');
+  const infoBody = portraitInfo.querySelector('.portrait-info-body');
+  const infoClose = document.getElementById('portraitInfoClose');
+  const caps = [...document.querySelectorAll('.hero-visual .cap[data-title]')];
+  let activeCap = null;
+
+  // Start the circular reveal from the side of the portrait nearest the clicked keyword.
+  const setOrigin = (cap) => {
+    const ring = portraitRing.getBoundingClientRect();
+    const c = cap.getBoundingClientRect();
+    const x = ((c.left + c.width / 2) - ring.left) / ring.width * 100;
+    const y = ((c.top + c.height / 2) - ring.top) / ring.height * 100;
+    // Move the origin instantly (no transition), otherwise the reveal drifts in from the centre.
+    portraitInfo.style.transition = 'none';
+    portraitInfo.style.setProperty('--ox', `${Math.max(0, Math.min(100, x)).toFixed(1)}%`);
+    portraitInfo.style.setProperty('--oy', `${Math.max(0, Math.min(100, y)).toFixed(1)}%`);
+    void portraitInfo.offsetWidth;
+    portraitInfo.style.transition = '';
+  };
+
+  const fillContent = (cap) => {
+    const badge = cap.querySelector('.icon-badge');
+    infoBadge.className = badge.className;
+    infoBadge.innerHTML = badge.innerHTML;
+    infoTitle.textContent = cap.dataset.title;
+    infoText.textContent = cap.dataset.desc;
+  };
+
+  const openInfo = (cap) => {
+    if (activeCap === cap) { closeInfo(); return; }
+    if (activeCap) {
+      // Already open: swap the content and replay just the text fade.
+      activeCap.classList.remove('is-active');
+      activeCap.setAttribute('aria-expanded', 'false');
+      infoBody.classList.remove('swap');
+      void infoBody.offsetWidth; // restart the swap animation
+      infoBody.classList.add('swap');
+    }
+    setOrigin(cap);
+    fillContent(cap);
+    activeCap = cap;
+    cap.classList.add('is-active');
+    cap.setAttribute('aria-expanded', 'true');
+    portraitInfo.classList.add('open');
+  };
+
+  function closeInfo({ restoreFocus = false } = {}) {
+    if (!activeCap) return;
+    const cap = activeCap;
+    setOrigin(cap);
+    portraitInfo.classList.remove('open');
+    infoBody.classList.remove('swap');
+    cap.classList.remove('is-active');
+    cap.setAttribute('aria-expanded', 'false');
+    activeCap = null;
+    if (restoreFocus) cap.focus();
+  }
+
+  caps.forEach(cap => {
+    cap.setAttribute('role', 'button');
+    cap.setAttribute('tabindex', '0');
+    cap.setAttribute('aria-controls', 'portraitInfo');
+    cap.setAttribute('aria-expanded', 'false');
+    cap.addEventListener('click', () => openInfo(cap));
+    cap.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openInfo(cap); }
+    });
+  });
+
+  infoClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeInfo({ restoreFocus: e.detail === 0 });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && activeCap) closeInfo({ restoreFocus: true });
+  });
+}

@@ -7,8 +7,8 @@
   <title>Srinivasa Channappa | UX Design Leader</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Inter:wght@400;500;600;700&family=Kalam:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=8" />
 </head>
 <body id="top">
 
@@ -89,14 +89,23 @@
       <div class="hero-visual" id="heroVisual" aria-label="Portrait of Srinivasa, surrounded by core UX capability highlights">
         <div class="orbit orbit-a" data-depth="14"></div>
         <div class="orbit orbit-b" data-depth="24"></div>
-        <div class="portrait-ring" id="portraitRing" data-depth="6" tabindex="0" role="img" aria-label="Portrait of Srinivasa Channappa">
-          <img id="portraitImg" src="assets/portrait.png" alt="" />
+        <div class="portrait-ring" id="portraitRing" data-depth="6" tabindex="0">
+          <img id="portraitImg" src="assets/portrait.png" alt="Portrait of Srinivasa Channappa" />
+          <!-- Keyword detail panel: a white mask revealed over the photo when a keyword is clicked -->
+          <div class="portrait-info" id="portraitInfo" role="region" aria-live="polite" aria-labelledby="portraitInfoTitle">
+            <button class="portrait-info-close" id="portraitInfoClose" type="button" aria-label="Close description"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+            <div class="portrait-info-body">
+              <span class="icon-badge" id="portraitInfoBadge" aria-hidden="true"></span>
+              <h3 id="portraitInfoTitle"></h3>
+              <p id="portraitInfoText"></p>
+            </div>
+          </div>
         </div>
-        <div class="cap cap-1" data-depth="34"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#icon-compass"/></svg></span><span>UX<br>Foundations</span></div>
-        <div class="cap cap-2" data-depth="30"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#icon-bulb"/></svg></span><span>Conceptual<br>Design</span></div>
-        <div class="cap cap-3" data-depth="38"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg></span><span>Usability<br>Testing</span></div>
-        <div class="cap cap-4" data-depth="32"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg></span><span>Sci &amp; Art of<br>Effective Design</span></div>
-        <div class="cap cap-5" data-depth="26"><span class="icon-badge icon-badge-ai" aria-hidden="true">AI</span><span>AI + Human-<br>Centered UX</span></div>
+        <div class="cap cap-1" data-depth="34" data-title="UX Foundations" data-desc="Research, information architecture and interaction design — the fundamentals that turn complex requirements into clear, usable flows."><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#icon-compass"/></svg></span><span>UX<br>Foundations</span></div>
+        <div class="cap cap-2" data-depth="30" data-title="Conceptual Design" data-desc="Exploring ideas early through sketches, journeys and prototypes, so teams can see, test and align on the right direction before building."><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#icon-bulb"/></svg></span><span>Conceptual<br>Design</span></div>
+        <div class="cap cap-3" data-depth="38" data-title="Usability Testing" data-desc="Validating designs with real users through formative and summative testing and heuristic reviews, turning findings into confident decisions."><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg></span><span>Usability<br>Testing</span></div>
+        <div class="cap cap-4" data-depth="32" data-title="Sci &amp; Art of Effective Design" data-desc="Balancing evidence and craft — usability principles, visual hierarchy and design systems working together so experiences feel effortless."><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#icon-grid"/></svg></span><span>Sci &amp; Art of<br>Effective Design</span></div>
+        <div class="cap cap-5" data-depth="26" data-title="AI + Human-Centered UX" data-desc="Using Figma Make, Claude and GitHub Copilot to explore faster, while keeping real user needs at the centre of every design decision."><span class="icon-badge icon-badge-ai" aria-hidden="true">AI</span><span>AI + Human-<br>Centered UX</span></div>
       </div>
     </div>
 
@@ -225,26 +234,29 @@
     <div class="footer-copy">
       <p class="eyebrow"><span aria-hidden="true"></span>Let's connect</p>
       <h2>Let's <em class="hl">Connect</em></h2>
-      <p>I'm always open to discussing new opportunities, collaborations, or just a conversation about design and technology.</p>
+      <p>I'm always open to discussing new opportunities, collaborations, or a conversation about design and technology.</p>
     </div>
     <div class="footer-contact">
-      <nav class="footer-links" aria-label="Footer">
-        <a class="active" href="#top" aria-current="page">Home</a><a href="#work">Projects</a><a href="#resume">Resume</a>
-      </nav>
+      <p class="footer-label">Get in touch</p>
       <a href="mailto:srini.c456@gmail.com"><span class="footer-icon"><svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg></span> srini.c456@gmail.com</a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><span class="footer-icon" aria-hidden="true">in</span> LinkedIn</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><span class="footer-icon" aria-hidden="true">in</span> LinkedIn <svg class="icon ext-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8,7 17,7 17,16"/></svg></a>
     </div>
     <div class="footer-note">
-      <p class="handwritten">I believe good design starts with understanding people&mdash;their needs, challenges, and the context around them. I enjoy simplifying complex problems, bringing teams together, and creating digital experiences that are useful, thoughtful, and meaningful.</p>
+      <blockquote class="footer-quote">
+        <p>Good design starts with understanding people.<br>I enjoy simplifying complexity, bringing teams together, and creating experiences that are useful, thoughtful, and meaningful.</p>
+      </blockquote>
     </div>
   </div>
   <div class="container footer-bottom">
+    <nav class="footer-links" aria-label="Footer">
+      <a class="active" href="#top" aria-current="page">Home</a><a href="projects.html">Projects</a><a href="resume.html">Resume</a>
+    </nav>
     <span>© 2026 Srinivasa Channappa. All rights reserved.</span>
   </div>
 </footer>
 
 <button class="to-top" id="toTop" aria-label="Scroll back to top"><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"/></svg></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="script.js?v=4"></script>
+<script src="script.js?v=8"></script>
 </body>
 </html>
